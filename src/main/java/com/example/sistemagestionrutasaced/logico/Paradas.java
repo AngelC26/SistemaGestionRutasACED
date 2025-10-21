@@ -1,0 +1,8 @@
+package com.example.sistemagestionrutasaced.logico;
+
+public class Paradas
+
+
+
+{
+}
