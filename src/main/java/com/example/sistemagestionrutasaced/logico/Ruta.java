@@ -4,33 +4,41 @@ public class Ruta {
 
     private Parada origen;
     private Parada destino;
-    private double tiempo;     // en minutos
-    private double distancia;  // en kilometros
-    private double costo;      // pesos dominicanos (DOP)
+    private double tiempoM;
+    private double distanciaKm;
+    private double costoDOP;
 
-    public Ruta(Parada origen, Parada destino, double tiempo, double distancia, double costo) {
+    public Ruta(Parada origen, Parada destino, double tiempoM, double distanciaKm, double costoDOP) {
         this.origen = origen;
         this.destino = destino;
-        this.tiempo = tiempo;
-        this.distancia = distancia;
-        this.costo = costo;
+        this.tiempoM = tiempoM;
+        this.distanciaKm = distanciaKm;
+        this.costoDOP = costoDOP;
     }
 
     public Parada getOrigen() {
         return origen;
     }
+
     public Parada getDestino() {
         return destino;
     }
-    public double getTiempo() {
-        return tiempo;
-    }
-    public double getDistancia() {
-        return distancia;
-    }
-    public double getCosto() {
-        return costo;
+
+    public double getTiempoM() {
+        return tiempoM;
     }
 
+    public double getDistanciaKm() {
+        return distanciaKm;
+    }
+
+    public double getCostoDOP() {
+        return costoDOP;
+    }
+
+    @Override
+    public String toString() {
+        return origen.getNombre() + " -> " + destino.getNombre() + " | Tiempo: " + tiempoM + " min, Distancia: " + distanciaKm + " km, Costo: " + costoDOP + " DOP";
+    }
 
 }

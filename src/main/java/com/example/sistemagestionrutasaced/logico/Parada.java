@@ -18,5 +18,9 @@ public class Parada {
         return nombre;
     }
 
+    @Override
+    public String toString() {
+        return nombre + " (" + id + ")";
+    }
 
 }
