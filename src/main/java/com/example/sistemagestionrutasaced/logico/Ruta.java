@@ -8,7 +8,7 @@ public class Ruta {
     private double distanciaKm;
     private double costoDOP;
 
-    public Ruta(Parada origen, Parada destino, float tiempoM, float distanciaKm, float costoDOP) {
+    public Ruta(Parada origen, Parada destino, double tiempoM, double distanciaKm, double costoDOP) {
         this.origen = origen;
         this.destino = destino;
         this.tiempoM = tiempoM;
