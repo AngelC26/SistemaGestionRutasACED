@@ -21,6 +21,6 @@ public class Main {
         g.imprimirListaAdyacencia();
 
         System.out.println();
-        AlgoritmoRutas.dijkstra(g, "P01");
+        AlgoritmoRutas.Dijkstra(g, "P01");
     }
 }

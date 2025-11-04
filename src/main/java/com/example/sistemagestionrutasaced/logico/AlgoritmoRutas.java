@@ -2,10 +2,13 @@ package com.example.sistemagestionrutasaced.logico;
 
 import java.util.*;
 
-
 public class AlgoritmoRutas {
 
-    public static void dijkstra(GrafoTransporte grafo, String idOrigen) {
+    public AlgoritmoRutas() {
+
+    }
+
+    public static void Dijkstra(GrafoTransporte grafo, String idOrigen) {
 
         Map<String, Integer> indices = grafo.getIdentificador();
         List<Parada> paradas = grafo.getParadas();
@@ -34,12 +37,12 @@ public class AlgoritmoRutas {
             visitado[nodoActual] = true;
 
             for (Ruta r : adyacencia.get(nodoActual)) {
-                int destino = indices.get(r.getDestino().getId());
+                int destino = indices.get(r.getDestino().getCodigo());
                 double nuevoCosto = dist[nodoActual] + r.getTiempoM();
 
                 if (nuevoCosto < dist[destino]) {
                     dist[destino] = nuevoCosto;
-                    prev[destino] = paradas.get(nodoActual).getId();
+                    prev[destino] = paradas.get(nodoActual).getCodigo();
                     pq.add(new int[]{destino, (int) nuevoCosto});
                 }
             }
@@ -58,15 +61,12 @@ public class AlgoritmoRutas {
             System.out.print(dist[i] + " min | Ruta: ");
 
             List<String> camino = new ArrayList<>();
-            String actual = paradas.get(i).getId();
+            String actual = paradas.get(i).getCodigo();
 
             while (actual != null) {
                 camino.add(actual);
                 actual = prev[indices.get(actual)];
             }
-
-            Collections.reverse(camino);
-            System.out.println(String.join(" -> ", camino));
         }
     }
 }
