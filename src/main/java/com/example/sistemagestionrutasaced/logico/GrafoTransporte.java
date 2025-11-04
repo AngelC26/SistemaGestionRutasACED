@@ -27,7 +27,6 @@ public class GrafoTransporte {
         return identificador;
     }
 
-
     public void agregarParada(String id, String nombre) {
         if (identificador.containsKey(id)) {
             System.out.println("La parada con el ID | " + id + " | ya existe.");
@@ -39,7 +38,7 @@ public class GrafoTransporte {
         identificador.put(id, paradas.size() - 1);
     }
 
-    public void agregarRuta(String idOrigen, String idDestino, float tiempo, float distancia, float costo) {
+    public void agregarRuta(String idOrigen, String idDestino, double tiempoM, double distanciaKm, double costoDOP) {
         Integer origen = identificador.get(idOrigen);
         Integer destino = identificador.get(idDestino);
 
@@ -48,7 +47,7 @@ public class GrafoTransporte {
             return;
         }
 
-        Ruta ruta = new Ruta(paradas.get(origen), paradas.get(destino), tiempo, distancia, costo);
+        Ruta ruta = new Ruta(paradas.get(origen), paradas.get(destino), tiempoM, distanciaKm, costoDOP);
         adyacencia.get(origen).add(ruta);
     }
 

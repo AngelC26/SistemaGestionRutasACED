@@ -19,7 +19,7 @@ public class Parada {
 
     @Override
     public String toString() {
-        return nombre + " (" + codigo +")";
-}
+        return nombre + " (" + codigo + ")";
+    }
 
 }
