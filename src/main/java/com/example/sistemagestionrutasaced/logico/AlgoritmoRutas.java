@@ -2,11 +2,8 @@ package com.example.sistemagestionrutasaced.logico;
 
 import java.util.*;
 
+
 public class AlgoritmoRutas {
-
-    public AlgoritmoRutas() {
-
-    }
 
     public static void Dijkstra(GrafoTransporte grafo, String idOrigen) {
 
@@ -37,18 +34,18 @@ public class AlgoritmoRutas {
             visitado[nodoActual] = true;
 
             for (Ruta r : adyacencia.get(nodoActual)) {
-                int destino = indices.get(r.getDestino().getCodigo());
+                int destino = indices.get(r.getDestino().getId());
                 double nuevoCosto = dist[nodoActual] + r.getTiempoM();
 
                 if (nuevoCosto < dist[destino]) {
                     dist[destino] = nuevoCosto;
-                    prev[destino] = paradas.get(nodoActual).getCodigo();
+                    prev[destino] = paradas.get(nodoActual).getId();
                     pq.add(new int[]{destino, (int) nuevoCosto});
                 }
             }
         }
 
-        System.out.println("Resultados de Dijkstra desde " + idOrigen + ":\n");
+        System.out.println("\nResultados de Dijkstra desde " + idOrigen + ":\n");
 
         for (int i = 0; i < n; i++) {
             System.out.print(paradas.get(i).getNombre() + " = ");
@@ -61,12 +58,15 @@ public class AlgoritmoRutas {
             System.out.print(dist[i] + " min | Ruta: ");
 
             List<String> camino = new ArrayList<>();
-            String actual = paradas.get(i).getCodigo();
+            String actual = paradas.get(i).getId();
 
             while (actual != null) {
                 camino.add(actual);
                 actual = prev[indices.get(actual)];
             }
+
+            Collections.reverse(camino);
+            System.out.println(String.join(" -> ", camino));
         }
     }
 }
