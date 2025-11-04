@@ -1,12 +1,44 @@
 package com.example.sistemagestionrutasaced.logico;
 
-import java.util.ArrayList;
-
 public class Ruta {
-    private String ruta;
-    private int distancia;
-    private int costo;
-    private ArrayList<Ruta> transbordosRutas;
-    private Parada salida;
-    private Parada llegada;
+
+    private Parada origen;
+    private Parada destino;
+    private double tiempoM;
+    private double distanciaKm;
+    private double costoDOP;
+
+    public Ruta(Parada origen, Parada destino, double tiempoM, double distanciaKm, double costoDOP) {
+        this.origen = origen;
+        this.destino = destino;
+        this.tiempoM = tiempoM;
+        this.distanciaKm = distanciaKm;
+        this.costoDOP = costoDOP;
+    }
+
+    public Parada getOrigen() {
+        return origen;
+    }
+
+    public Parada getDestino() {
+        return destino;
+    }
+
+    public double getTiempoM() {
+        return tiempoM;
+    }
+
+    public double getDistanciaKm() {
+        return distanciaKm;
+    }
+
+    public double getCostoDOP() {
+        return costoDOP;
+    }
+
+    @Override
+    public String toString() {
+        return origen.getNombre() + " -> " + destino.getNombre() + " | Tiempo: " + tiempoM + " min, Distancia: " + distanciaKm + " km, Costo: " + costoDOP + " DOP";
+    }
+
 }
