@@ -39,7 +39,7 @@ public class GrafoTransporte {
         identificador.put(id, paradas.size() - 1);
     }
 
-    public void agregarRuta(String idOrigen, String idDestino, double tiempo, double distancia, double costo) {
+    public void agregarRuta(String idOrigen, String idDestino, float tiempo, float distancia, float costo) {
         Integer origen = identificador.get(idOrigen);
         Integer destino = identificador.get(idDestino);
 
