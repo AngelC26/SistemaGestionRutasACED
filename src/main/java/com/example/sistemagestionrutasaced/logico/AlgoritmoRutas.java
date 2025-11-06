@@ -9,17 +9,17 @@ public class AlgoritmoRutas {
 
         Map<String, Integer> indices = grafo.getIdentificador();
         List<Parada> paradas = grafo.getParadas();
-        List<List<Ruta>> adyacencia = grafo.getAdyacencia();
+        List<List<Ruta>> ListaAdyacencia = grafo.getAdyacencia();
 
         int n = paradas.size();
-        double[] dist = new double[n];
-        String[] prev = new String[n];
+        double[] menorTiempo = new double[n];
+        String[] nodoAnterior = new String[n];
 
-        Arrays.fill(dist, Double.MAX_VALUE);
-        Arrays.fill(prev, null);
+        Arrays.fill(menorTiempo, Double.MAX_VALUE);
+        Arrays.fill(nodoAnterior, null);
 
         int origen = indices.get(idOrigen);
-        dist[origen] = 0;
+        menorTiempo[origen] = 0;
 
         PriorityQueue<int[]> pq =
                 new PriorityQueue<>(Comparator.comparingDouble(a -> a[1]));
@@ -33,13 +33,13 @@ public class AlgoritmoRutas {
             if (visitado[nodoActual]) continue;
             visitado[nodoActual] = true;
 
-            for (Ruta r : adyacencia.get(nodoActual)) {
-                int destino = indices.get(r.getDestino().getId());
-                double nuevoCosto = dist[nodoActual] + r.getTiempoM();
+            for (Ruta r : ListaAdyacencia.get(nodoActual)) {
+                int destino = indices.get(r.getDestino().getCodigo());
+                double nuevoCosto = menorTiempo[nodoActual] + r.getTiempoM();
 
-                if (nuevoCosto < dist[destino]) {
-                    dist[destino] = nuevoCosto;
-                    prev[destino] = paradas.get(nodoActual).getId();
+                if (nuevoCosto < menorTiempo[destino]) {
+                    menorTiempo[destino] = nuevoCosto;
+                    nodoAnterior[destino] = paradas.get(nodoActual).getCodigo();
                     pq.add(new int[]{destino, (int) nuevoCosto});
                 }
             }
@@ -50,22 +50,23 @@ public class AlgoritmoRutas {
         for (int i = 0; i < n; i++) {
             System.out.print(paradas.get(i).getNombre() + " = ");
 
-            if (dist[i] == Double.MAX_VALUE) {
+            if (menorTiempo[i] == Double.MAX_VALUE) {
                 System.out.println("No hay ruta");
                 continue;
             }
 
-            System.out.print(dist[i] + " min | Ruta: ");
+            System.out.print(menorTiempo[i] + " min | Ruta: ");
 
             List<String> camino = new ArrayList<>();
-            String actual = paradas.get(i).getId();
+            String actual = paradas.get(i).getCodigo();
 
             while (actual != null) {
                 camino.add(actual);
-                actual = prev[indices.get(actual)];
+                actual = nodoAnterior[indices.get(actual)];
             }
 
             Collections.reverse(camino);
+
             System.out.println(String.join(" -> ", camino));
         }
     }

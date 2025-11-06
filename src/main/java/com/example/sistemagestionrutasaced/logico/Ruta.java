@@ -17,14 +17,17 @@ public class Ruta {
     }
 
     public Parada getOrigen() {
+
         return origen;
     }
 
     public Parada getDestino() {
+
         return destino;
     }
 
     public double getTiempoM() {
+
         return tiempoM;
     }
 
